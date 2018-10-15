@@ -6,7 +6,7 @@ import io.socket.client.Socket
 
 object Socket {
 
-    private val socket = IO.socket("http://localhost:3000")
+    private val socket = IO.socket(BuildConfig.SOCKET_URL)
 
     fun connect() {
         socket.connect()

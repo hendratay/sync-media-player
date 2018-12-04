@@ -13,6 +13,10 @@ import com.google.android.exoplayer2.util.Util
 
 class MainActivity : YouTubeBaseActivity() {
 
+    companion object {
+        val BIG_BUCK_BUNNY = Uri.parse("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -35,12 +39,9 @@ class MainActivity : YouTubeBaseActivity() {
 
     private fun setupExoPlayer() {
         val player = ExoPlayerFactory.newSimpleInstance(this)
+        val dataSourceFactory = DefaultDataSourceFactory(this, Util.getUserAgent(this, "sync-media-player"))
+        val videoSource = ExtractorMediaSource.Factory(dataSourceFactory).createMediaSource(BIG_BUCK_BUNNY)
         exo_player_view.player = player
-        val dataSourceFactory = DefaultDataSourceFactory(this,
-                Util.getUserAgent(this, "sync-media-player"))
-        val googleIO = Uri.parse("https://www.youtube.com/watch?v=Hzv5-R9XLTc")
-        val videoSource = ExtractorMediaSource.Factory(dataSourceFactory)
-                .createMediaSource(googleIO)
         player.prepare(videoSource)
     }
 

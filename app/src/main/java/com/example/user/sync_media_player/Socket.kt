@@ -6,22 +6,27 @@ import io.socket.client.Socket
 
 object Socket {
 
+    private const val TAG = "Socket"
     private val socket = IO.socket(BuildConfig.SOCKET_URL)
 
-    fun connect() {
-        socket.connect()
-    }
-
+    //region Listener
+    //--------------------------------------------------------------------------------
     fun onConnect() {
-        socket.on(Socket.EVENT_CONNECT) {
-            Log.d("SOCKET", "CONNECTED")
-        }
+        socket.on(Socket.EVENT_CONNECT) { _ -> Log.d(TAG, "CONNECTED") }
     }
 
     fun onDisconnect() {
-        socket.on(Socket.EVENT_DISCONNECT) {
-            Log.d("SOCKET", "DISCONNECT")
-        }
+        socket.on(Socket.EVENT_DISCONNECT) { _ -> Log.d(TAG, "DISCONNECT") }
     }
+    //--------------------------------------------------------------------------------
+    //endregion
+
+    //region Emitter
+    //--------------------------------------------------------------------------------
+    fun connect() {
+        socket.connect()
+    }
+    //--------------------------------------------------------------------------------
+    //endregion
 
 }

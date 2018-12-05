@@ -3,6 +3,7 @@ package com.example.user.sync_media_player
 import android.net.Uri
 import android.os.Bundle
 import com.google.android.exoplayer2.ExoPlayerFactory
+import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.youtube.player.YouTubeBaseActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
@@ -41,7 +42,7 @@ class MainActivity : YouTubeBaseActivity() {
         val player = ExoPlayerFactory.newSimpleInstance(this)
         val dataSourceFactory = DefaultDataSourceFactory(this, Util.getUserAgent(this, "sync-media-player"))
         val videoSource = ExtractorMediaSource.Factory(dataSourceFactory).createMediaSource(BIG_BUCK_BUNNY)
-        exo_player_view.player = player
+        exo_player_view.player = player as SimpleExoPlayer
         player.prepare(videoSource)
     }
 

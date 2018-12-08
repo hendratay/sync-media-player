@@ -17,8 +17,6 @@ import com.google.android.exoplayer2.util.Util
 import android.widget.Toast
 import android.content.Intent
 import android.util.Log
-import com.google.android.youtube.player.YouTubeInitializationResult
-import com.google.android.youtube.player.YouTubePlayer
 
 class MainActivity : YouTubeBaseActivity() {
 
@@ -31,9 +29,8 @@ class MainActivity : YouTubeBaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        showFileChooser()
-//        setupYoutubePlayer()
-//        setupExoPlayer()
+        setupYoutubePlayer()
+        setupExoPlayer()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, resultData: Intent?) {
@@ -77,7 +74,7 @@ class MainActivity : YouTubeBaseActivity() {
         val player = ExoPlayerFactory.newSimpleInstance(this)
         val dataSourceFactory = DefaultDataSourceFactory(this, Util.getUserAgent(this, "sync-media-player"))
         val videoSource = ExtractorMediaSource.Factory(dataSourceFactory).createMediaSource(BIG_BUCK_BUNNY)
-        exo_player_view.player = player as SimpleExoPlayer
+        simple_exo_player_view.player = player as SimpleExoPlayer
         player.prepare(videoSource)
     }
 

@@ -12,11 +12,19 @@ object Socket {
     //region Listener
     //--------------------------------------------------------------------------------
     fun onConnect() {
-        socket.on(Socket.EVENT_CONNECT) { _ -> Log.d(TAG, "CONNECTED") }
+        socket.on(Socket.EVENT_CONNECT) { _ -> Log.d(TAG, "Connected") }
     }
 
     fun onDisconnect() {
-        socket.on(Socket.EVENT_DISCONNECT) { _ -> Log.d(TAG, "DISCONNECT") }
+        socket.on(Socket.EVENT_DISCONNECT) { _ -> Log.d(TAG, "Disconnected") }
+    }
+
+    fun onPlay(listener: (String) -> Unit) {
+        socket.on("play") { param -> listener(param[0].toString()) }
+    }
+
+    fun onPause(listener: (String) -> Unit) {
+        socket.on("pause") { param -> listener(param[0].toString()) }
     }
     //--------------------------------------------------------------------------------
     //endregion
@@ -25,6 +33,14 @@ object Socket {
     //--------------------------------------------------------------------------------
     fun connect() {
         socket.connect()
+    }
+
+    fun play() {
+        socket.emit("play")
+    }
+
+    fun pause() {
+        socket.emit("pause")
     }
     //--------------------------------------------------------------------------------
     //endregion

@@ -26,6 +26,10 @@ object Socket {
     fun onPause(listener: (String) -> Unit) {
         socket.on("pause") { param -> listener(param[0].toString()) }
     }
+
+    fun onStop(listener: (String) -> Unit) {
+        socket.on("stop") { param -> listener(param[0].toString()) }
+    }
     //--------------------------------------------------------------------------------
     //endregion
 
@@ -41,6 +45,10 @@ object Socket {
 
     fun pause() {
         socket.emit("pause")
+    }
+
+    fun stop() {
+        socket.emit("stop")
     }
     //--------------------------------------------------------------------------------
     //endregion

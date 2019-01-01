@@ -17,6 +17,7 @@ import com.google.android.exoplayer2.util.Util
 import android.widget.Toast
 import android.content.Intent
 import android.util.Log
+import kotlinx.android.synthetic.main.exo_playback_control_view.*
 
 class MainActivity : YouTubeBaseActivity() {
 
@@ -29,6 +30,7 @@ class MainActivity : YouTubeBaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        setupSocket()
         setupYoutubePlayer()
         setupExoPlayer()
     }
@@ -57,6 +59,12 @@ class MainActivity : YouTubeBaseActivity() {
                 or View.SYSTEM_UI_FLAG_FULLSCREEN)
     }
 
+    private fun setupSocket() {
+        Socket.onConnect()
+        Socket.onDisconnect()
+        Socket.connect()
+    }
+
     private fun setupYoutubePlayer() {
 /*        youtube_player_view.initialize(BuildConfig.YOUTUBE_PLAYER_API_KEY, object : YouTubePlayer.OnInitializedListener {
             override fun onInitializationSuccess(p0: YouTubePlayer.Provider?, p1: YouTubePlayer?, p2: Boolean) {
@@ -76,6 +84,16 @@ class MainActivity : YouTubeBaseActivity() {
         val videoSource = ExtractorMediaSource.Factory(dataSourceFactory).createMediaSource(BIG_BUCK_BUNNY)
         simple_exo_player_view.player = player as SimpleExoPlayer
         player.prepare(videoSource)
+
+        exo_play.setOnClickListener {
+            player.playWhenReady = true
+            Socket.play()
+        }
+
+        exo_pause.setOnClickListener {
+            player.playWhenReady = false
+            Socket.pause()
+        }
     }
 
     private fun showFileChooser() {

@@ -87,11 +87,15 @@ class MainActivity : YouTubeBaseActivity() {
 
         exo_play.setOnClickListener {
             player.playWhenReady = true
+            exo_fast_forward.visibility = View.VISIBLE
+            exo_rewind.visibility = View.VISIBLE
             Socket.play()
         }
 
         exo_pause.setOnClickListener {
             player.playWhenReady = false
+            exo_fast_forward.visibility = View.GONE
+            exo_rewind.visibility = View.GONE
             Socket.pause()
         }
     }

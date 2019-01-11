@@ -1,25 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <ImageButton
-        android:id="@id/exo_play"
+        android:id="@+id/exo_play"
         style="@style/ExoMediaButton.Play"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="center"
         android:background="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription" />
 
     <ImageButton
-        android:id="@id/exo_pause"
+        android:id="@+id/exo_pause"
         style="@style/ExoMediaButton.Pause"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="center"
         android:background="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription" />
 
-</FrameLayout>
+    <ImageButton
+        android:id="@+id/exo_rewind"
+        style="@style/ExoMediaButton.Rewind"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@android:color/black"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/exo_pause"
+        app:layout_constraintEnd_toStartOf="@+id/exo_pause"
+        app:layout_constraintTop_toTopOf="@+id/exo_pause"
+        tools:ignore="ContentDescription" />
+
+    <ImageButton
+        android:id="@+id/exo_fast_forward"
+        style="@style/ExoMediaButton.FastForward"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:background="@android:color/black"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/exo_pause"
+        app:layout_constraintStart_toEndOf="@+id/exo_pause"
+        app:layout_constraintTop_toTopOf="@+id/exo_pause"
+        tools:ignore="ContentDescription" />
+
+</android.support.constraint.ConstraintLayout>

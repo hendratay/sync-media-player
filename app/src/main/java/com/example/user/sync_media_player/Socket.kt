@@ -30,6 +30,14 @@ object Socket {
     fun onStop(listener: (String) -> Unit) {
         socket.on("stop") { param -> listener(param[0].toString()) }
     }
+
+    fun onRewind(listener: (String) -> Unit) {
+        socket.on("rewind") { param -> listener(param[0].toString()) }
+    }
+
+    fun onFastForward(listener: (String) -> Unit) {
+        socket.on("fast_forward") { param -> listener(param[0].toString()) }
+    }
     //--------------------------------------------------------------------------------
     //endregion
 
@@ -49,6 +57,14 @@ object Socket {
 
     fun stop() {
         socket.emit("stop")
+    }
+
+    fun rewind() {
+        socket.emit("rewind")
+    }
+
+    fun fastForward() {
+        socket.emit("fast_forward")
     }
     //--------------------------------------------------------------------------------
     //endregion

@@ -98,6 +98,14 @@ class MainActivity : YouTubeBaseActivity() {
             exo_rewind.visibility = View.GONE
             Socket.pause()
         }
+
+        exo_fast_forward.setOnClickListener {
+            player.seekTo(player.currentPosition + 10000)
+        }
+
+        exo_rewind.setOnClickListener {
+            player.seekTo(player.currentPosition - 10000)
+        }
     }
 
     private fun showFileChooser() {
